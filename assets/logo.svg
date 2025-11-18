@@ -1,0 +1,5 @@
+<svg width="260" height="70" xmlns="http://www.w3.org/2000/svg">
+  <rect width="260" height="70" fill="#0f172a" rx="8"/>
+  <text x="20" y="45" font-family="Consolas, monospace"
+        font-size="36" fill="#38bdf8">devctl</text>
+</svg>

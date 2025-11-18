@@ -1,198 +1,389 @@
+<p align="center">
 
-# devctl
+<!-- <pre>
+   ____             _ _
+  |  _ \  _____   _(_) |_
+  | | | |/ _ \ \ / / | __|
+  | |_| |  __/\ V /| | |_
+  |____/ \___| \_/ |_|\__|
+
+          devctl
+
+</pre> -->
+
+  <!-- <img src="./assets/logo.svg" width="full" align="center" /> -->
+</p>
+
+<h1 align="center">devctl</h1>
+
+<p align="center">
+  <strong>Cross-platform developer automation toolkit</strong>
+  <br />
+  Start/stop cloud dev servers, estimate billing, snapshot machines, manage SSH config, and more — all from one CLI.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue" />
+  <img src="https://img.shields.io/badge/language-Python%203.9%2B-orange" />
+  <img src="https://img.shields.io/badge/shell-bash%20%7C%20powershell%20%7C%20cmd-green" />
+  <img src="https://img.shields.io/github/license/<YOUR_GITHUB>/devctl" />
+  <img src="https://img.shields.io/github/v/release/<YOUR_GITHUB>/devctl" />
+</p>
+
+---
 
 > [!CAUTION]
-> This is a WIP for personal usage, I expect to finalise a release in the coming weeks. until then double check the code before running it.
+> This is an early WIP tool intended for personal use.
+> A stable release is coming soon — until then, **review code before running commands**, especially anything involving SSH or cloud resources.
 
-`devctl` is a cross-platform command-line tool for managing cloud development
-instances.
-It currently focuses on **DigitalOcean**, with support for:
+## 🚀 Overview
 
-- Droplet power management
-- Billing estimation
-- Automatic SSH configuration
-- Tagging droplets
-- SSH key upload / attach / login
-- Full Windows + Linux + macOS compatibility
+**devctl** is a portable, cross-shell CLI for managing cloud-based developer environments.
+It works seamlessly across:
 
-It is designed to be ultra-lightweight and require **no installation**:
-just unzip and run `devctl` from any terminal.
+- **Windows CMD**
+- **PowerShell**
+- **Git Bash**
+- **Linux**
+- **macOS**
 
----
+All commands funnel into a single Python core for consistency and reliability.
 
-## 🚀 Features
+Use devctl to:
 
-### ☁️ Droplet Lifecycle
-- `devctl dev-up`: Start a droplet and wait until it's active
-- `devctl dev-down`: Power off a droplet
-- `devctl snapshot`: Create snapshots
-- `devctl logs`: View recent droplet actions
-- Automatic SSH config generation (`Host devctl`)
+- 🚀 **Spin up** your disposable dev server (`devctl dev-up`)
+- 🛑 **Shut it down** when you’re done (`devctl dev-down`)
+- 💰 **Track usage & cost** based on DigitalOcean actions (`devctl do-bill`)
+- 📸 **Snapshot** your development server (`devctl snapshot`)
+- 📜 **View logs** of recent actions (`devctl logs`)
+- 🔄 **Update yourself** if running inside a git clone (`devctl update`)
+- 📦 **Use a single config file (.env)** for secrets and settings
 
-### 💸 Billing Tools
-- `devctl do-bill`: Estimate hourly usage and projected monthly cost
-- Uses power_on/power_off actions for accuracy
-- Supports custom hourly pricing and monthly caps
-
-### 🔐 SSH Key Management (local + DigitalOcean)
-- `devctl ssh list`: List SSH keys stored in DigitalOcean
-- `devctl ssh add <pubkey>`: Upload a local key to DO
-- `devctl ssh delete`: Delete DO keys interactively
-- `devctl ssh sync`: Ensure `.env` key exists in DO
-- `devctl ssh attach`: Add a local public key to the droplet
-- `devctl ssh login`: Open an SSH session into the droplet
-
-### ⚙️ Setup & Config
-- `devctl config`:
-  - Select SSH key from `~/.ssh`
-  - Select droplet from DigitalOcean
-  - Auto-create and apply DO tag (`devctl`)
-  - Write `.env` with all required settings
-
-### 🔄 Updates
-- `devctl update`: Auto-pull updates if in a Git repo
+Perfect for developers who want **temporary cloud dev machines** without leaving droplets running all day.
 
 ---
 
-## 📦 Installation
+# ✨ Features
 
-Download the release ZIP and extract anywhere:
+### 🧩 Cross-platform launchers
+Works in **CMD**, **PowerShell**, **Bash**, **Git Bash**, **WSL**, and **Linux/macOS** shells.
+
+### 🧠 Single Python core
+All real logic lives in one file:
+```
+
+scripts/python/devctl_core.py
+
+```
+This keeps behavior consistent on all systems.
+
+### 🔐 One `.env` file for credentials
+Supports `.env` and `env/dev.env`.
+
+### 🔧 Automatic SSH config
+Adds/updates:
 
 ```
 
-devctl/
-├── devctl           # shell launcher (Linux/macOS)
-├── devctl.bat       # Windows launcher
-├── scripts/
-│   ├── python/
-│   ├── bash/
-│   ├── bat/
-│   ├── ps1/
-└── .env.example
+Host devctl
+HostName <droplet-ip>
+User <user>
+Port <port>
 
 ```
 
-No pip install, no requirements — it works out of the box.
+### 💵 Billing estimator
+Reads DigitalOcean `power_on` and `power_off` events to compute hourly usage and monthly rollups.
+
+### 📸 Snapshots
+Quick snapshots of your dev machine with:
+```
+
+devctl snapshot my-backup
+
+```
+
+### 📜 Droplet logs
+Show recent DO actions:
+```
+
+devctl logs
+
+```
+
+### 🔄 Self-update
+If installed from a Git clone:
+```
+
+devctl update
+
+```
 
 ---
 
-## 🧰 Initial Setup
+# 📦 Installation
 
-1. Add your DigitalOcean API token to `.env` or set it manually:
+## 📥 Download
+Download the latest release:
 
+👉 https://github.com/<YOUR_GITHUB>/devctl/releases
+
+Extract anywhere you want and proceed with install.
+
+---
+
+## 🪟 **Windows Installation**
+
+### 1. Extract the ZIP
+Example:
 ```
 
-DO_TOKEN=yourtoken
-
-```
-
-2. Run:
-
-```
-
-devctl config
+C:\devctl\
 
 ````
 
-This will:
+### 2. Run the installer
+From PowerShell:
 
-✔ Detect your SSH keys
-✔ Let you choose one
-✔ Fetch your droplets
-✔ Let you choose one
-✔ Tag the droplet (`devctl`)
-✔ Save everything into `.env`
-
----
-
-## 🛠 Commands
-
-### Core Commands
-
-```bash
-devctl dev-up        # start droplet, wait until ready
-devctl dev-down      # power off droplet
-devctl do-bill       # estimate monthly cost
-devctl snapshot       # take snapshot
-devctl logs           # show droplet actions
-devctl update         # git pull (if in repo)
-devctl config         # configure droplet + SSH key
-devctl --version      # show version
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+cd C:\devctl
+.\install-devctl.ps1
 ````
 
+### 3. Test:
+
+```powershell
+devctl --version
+```
+
 ---
 
-## 🔐 SSH Commands
+## 🐧 **Linux/macOS Installation**
+
+### 1. Extract the ZIP
+
+Example:
+
+```
+~/devctl/
+```
+
+### 2. Install:
 
 ```bash
-devctl ssh list       # list DigitalOcean SSH keys
-devctl ssh add <pub>  # upload SSH public key to DO
-devctl ssh delete     # remove DO SSH key
-devctl ssh sync       # ensure .env key is uploaded
-devctl ssh attach     # add local pubkey to droplet (authorized_keys)
-devctl ssh login      # SSH into droplet using configured key
+cd ~/devctl
+sudo ./install.sh
 ```
 
-**Login example:**
+### 3. Test:
 
 ```bash
-devctl ssh login
-```
-
-Equivalent to:
-
-```
-ssh root@<droplet-ip> -i ~/.ssh/<yourkey>
+devctl --version
 ```
 
 ---
 
-## 🏷 Droplet Tagging
+# 🔧 Configuration
 
-`devctl config` automatically:
-
-* Ensures a DigitalOcean tag named `devctl` exists
-* Applies it to your selected droplet
-
-You can use this in the DO dashboard to filter your dev instances.
-
----
-
-## 🗂 Environment Variables
-
-Stored in `.env`:
+Copy the sample env:
 
 ```
-DO_TOKEN=...
-DEVCTL_DROPLET_ID=...
-DEVCTL_SSH_KEY=...
-DEVCTL_SSH_USER=root
+cp .env.example env/dev.env
+```
+
+Edit:
+
+```dotenv
+DO_TOKEN=your_digitalocean_token
+DO_DROPLET_ID=123456789
 DO_API_BASE=https://api.digitalocean.com/v2
 DEVCTL_WRITE_SSH_CONFIG=true
+DEVCTL_SSH_USER=ubuntu
+DEVCTL_SSH_PORT=22
 ```
 
-Environment variables override `.env`.
+---
+
+# 🕹️ Usage
+
+## 🚀 Start the development server
+
+```bash
+devctl dev-up
+```
+
+Outputs:
+
+```
+Starting droplet 530961251...
+Waiting for droplet to become active...
+Status: active
+Droplet IP: 143.42.55.122
+Updated SSH config at ~/.ssh/config
+```
 
 ---
 
-## 🤝 Cross-Platform Support
+## 🛑 Stop the server
 
-| Platform           | Supported | Notes                         |
-| ------------------ | --------- | ----------------------------- |
-| Windows CMD        | ✅         | devctl.bat                    |
-| Windows PowerShell | ✅         | ps1 scripts included          |
-| Git Bash / MSYS2   | ✅         | POSIX shell versions included |
-| Linux (all)        | ✅         |                               |
-| macOS              | ✅         |                               |
+```bash
+devctl dev-down
+```
 
 ---
 
-## 📚 Roadmap
+## 💰 View estimated billing
 
-* Multi-cloud provider support (AWS Lightsail, Vultr, Linode)
-* Automatic droplet creation from templates
-* Scheduled auto-shutdown / cost-limiting
-* Project-based multiple instance support
-* devctl agent for live SSH/billing events
+```bash
+devctl do-bill
+```
+
+Example output:
+
+```
+📊 DigitalOcean Billing Summary
+--------------------------------
+Hours used:    12.75 h
+Hourly rate:   $0.071
+Cost so far:   $0.91
+Remaining before cap: $47.09
+```
 
 ---
+
+## 📸 Create snapshot
+
+```bash
+devctl snapshot my-backup
+```
+
+---
+
+## 📜 View droplet action logs
+
+```bash
+devctl logs
+```
+
+---
+
+## 🔄 Update devctl (if git clone)
+
+```bash
+devctl update
+```
+
+---
+
+## 🧩 All Commands
+
+```
+devctl dev-up        Start droplet and wait until active
+devctl dev-down      Power off droplet
+devctl do-bill       Estimate monthly cost from actions
+devctl snapshot [n]  Create snapshot with optional name
+devctl logs          Show recent droplet actions
+devctl update        git pull (if repo cloned)
+devctl --version     Show version
+devctl -h, --help    Show help
+```
+
+---
+
+# 🧱 Project Structure
+
+```
+devctl/
+│   devctl
+│   devctl.bat
+│   install.sh
+│   install-devctl.ps1
+│   .env.example
+│   VERSION
+│
+├───bin/
+│       dev-up
+│       dev-down
+│       do-bill
+│       load-env
+│
+├───env/
+│       dev.env
+│
+├───scripts/
+│   ├───python/
+│   │       devctl_core.py
+│   │       pjq.py
+│   │
+│   ├───bash/
+│   │       dev-up.sh
+│   │       dev-down.sh
+│   │       do-bill.sh
+│   │       load-env.sh
+│   │
+│   ├───bat/
+│   │       dev-up.bat
+│   │       dev-down.bat
+│   │       do-bill.cmd
+│   │       load-env.cmd
+│   │
+│   └───ps1/
+│           dev-up.ps1
+│           dev-down.ps1
+│           do-bill.ps1
+│           load-env.ps1
+```
+
+---
+
+# 🧪 Development
+
+Clone the repo:
+
+```bash
+git clone https://github.com/<YOUR_GITHUB>/devctl.git
+cd devctl
+```
+
+Run directly:
+
+```bash
+python scripts/python/devctl_core.py dev-up
+```
+
+---
+
+# 🧵 Contributing
+
+Pull requests welcome!
+Please open issues for:
+
+* Feature requests
+* Bug reports
+* Improvements to shell wrappers
+* New cloud providers (AWS Lightsail, Linode, Vultr, etc.)
+
+---
+
+# 📜 License
+
+[MIT](LICENSE)
+
+---
+
+# 🏁 Roadmap
+
+* Multi-cloud provider support
+* Auto-schedule shutdown timers
+* Integrated TUI dashboard
+* Docker container mode
+* VSCode extension
+* devctl daemon for idle shutdown
+* Firebase / Supabase / DB provisioning helpers
+
+---
+
+<p align="center">
+  <strong>Happy coding! 🚀</strong>
+</p>
