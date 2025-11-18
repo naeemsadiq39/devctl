@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+CMD="$1"
+shift || true
+
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+python "$ROOT/scripts/python/devctl_core.py" "$CMD" "$@"
